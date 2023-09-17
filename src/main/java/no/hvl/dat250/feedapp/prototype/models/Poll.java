@@ -10,7 +10,7 @@ public class Poll {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private User owner;
 
     @OneToMany(mappedBy = "poll", cascade = CascadeType.REMOVE)
@@ -19,23 +19,23 @@ public class Poll {
     @OneToMany(mappedBy = "poll", cascade = CascadeType.REMOVE)
     private Set<Vote> votes;
 
-    @Column
+    @Column(nullable = false)
     private String title;
 
-    @Column
+    @Column(nullable = false)
     private String question;
 
-    @Column
+    @Column(nullable = false)
     private boolean isPrivate = false;
 
-    @Column
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status = Status.Before;
 
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private Date created;
 
-    @Column
+    @Column(nullable = false)
     private Date updated;
 
     @PrePersist

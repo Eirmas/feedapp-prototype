@@ -14,7 +14,7 @@ public class Invite {
     @Id
     private String email;
 
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private Date created;
 
     @PrePersist

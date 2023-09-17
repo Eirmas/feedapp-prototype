@@ -5,15 +5,25 @@ import jakarta.persistence.*;
 @Entity(name = "votes")
 public class Vote {
     @Id
-    @ManyToOne
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(optional = false)
     private Poll poll;
 
-    @Id
-    @ManyToOne
+    @ManyToOne(optional = true)
     private User user;
 
-    @Column
+    @Column(nullable = false)
     private boolean answer;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Poll getPoll() {
         return poll;

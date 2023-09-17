@@ -14,19 +14,19 @@ public class User {
     @OneToMany(mappedBy = "owner", cascade = CascadeType.REMOVE)
     private Set<Poll> polls;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String given_name;
 
-    @Column
+    @Column(nullable = false)
     private String family_name;
 
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private Date created;
 
-    @Column
+    @Column(nullable = false)
     private Date updated;
 
     @PrePersist
