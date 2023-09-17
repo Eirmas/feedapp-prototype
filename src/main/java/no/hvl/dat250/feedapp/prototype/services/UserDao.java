@@ -15,7 +15,7 @@ public class UserDao {
   }
 
   public User getUserByEmail(String email) {
-    return em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+    return em.createQuery("SELECT u FROM users u WHERE u.email = :email", User.class)
         .setParameter("email", email)
         .getSingleResult();
   }
@@ -35,7 +35,7 @@ public class UserDao {
   }
 
   public void deleteUserById(Long id) {
-    em.createQuery("DELETE FROM User u WHERE u.id = :id")
+    em.createQuery("DELETE FROM users u WHERE u.id = :id")
         .setParameter("id", id)
         .executeUpdate();
   }

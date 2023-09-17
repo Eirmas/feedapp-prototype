@@ -2,7 +2,7 @@ package no.hvl.dat250.feedapp.prototype.models;
 
 import jakarta.persistence.*;
 
-@Entity
+@Entity(name = "votes")
 public class Vote {
     @Id
     @ManyToOne

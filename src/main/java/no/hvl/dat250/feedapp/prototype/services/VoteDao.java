@@ -15,7 +15,7 @@ public class VoteDao {
   }
 
   public void vote(Long pollId, Long userId, Boolean answer) {
-    Vote vote = em.createQuery("SELECT v FROM Vote v WHERE v.poll.id = :pollId AND v.user.id = :userId", Vote.class)
+    Vote vote = em.createQuery("SELECT v FROM votes v WHERE v.poll.id = :pollId AND v.user.id = :userId", Vote.class)
         .setParameter("pollId", pollId)
         .setParameter("userId", userId)
         .getResultStream().findFirst().orElse(null);

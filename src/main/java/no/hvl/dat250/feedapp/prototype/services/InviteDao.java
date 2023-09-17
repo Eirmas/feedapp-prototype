@@ -14,7 +14,7 @@ public class InviteDao {
   }
 
   public Invite getInvite(Long pollId, String email) {
-    return em.createQuery("SELECT i FROM Invite i WHERE i.poll.id = :pollId AND i.email = :email", Invite.class)
+    return em.createQuery("SELECT i FROM invites i WHERE i.poll.id = :pollId AND i.email = :email", Invite.class)
         .setParameter("pollId", pollId)
         .setParameter("email", email)
         .getSingleResult();
@@ -34,7 +34,7 @@ public class InviteDao {
   }
 
   public void deleteInvite(Long pollId, String email) {
-    em.createQuery("DELETE FROM Invite i WHERE i.poll.id = :pollId AND i.user.email = :email")
+    em.createQuery("DELETE FROM invites i WHERE i.poll.id = :pollId AND i.user.email = :email")
         .setParameter("pollId", pollId)
         .setParameter("email", email)
         .executeUpdate();

@@ -4,7 +4,7 @@ import java.util.Date;
 
 import jakarta.persistence.*;
 
-@Entity
+@Entity(name = "invites")
 public class Invite {
     @Id
     @ManyToOne

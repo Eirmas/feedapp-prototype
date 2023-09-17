@@ -32,19 +32,19 @@ public class PollDao {
   }
 
   public void deletePollById(Long id) {
-    em.createQuery("DELETE FROM Poll p WHERE p.id = :id")
+    em.createQuery("DELETE FROM polls p WHERE p.id = :id")
         .setParameter("id", id)
         .executeUpdate();
   }
 
   public int getPollYesById(Long id) {
-    return em.createQuery("SELECT COUNT(v) FROM Vote v WHERE v.poll.id = :id AND v.answer = true", Long.class)
+    return em.createQuery("SELECT COUNT(v) FROM votes v WHERE v.poll.id = :id AND v.answer = true", Long.class)
         .setParameter("id", id)
         .getSingleResult().intValue();
   }
 
   public int getPollNoById(Long id) {
-    return em.createQuery("SELECT COUNT(v) FROM Vote v WHERE v.poll.id = :id AND v.answer = false", Long.class)
+    return em.createQuery("SELECT COUNT(v) FROM votes v WHERE v.poll.id = :id AND v.answer = false", Long.class)
         .setParameter("id", id)
         .getSingleResult().intValue();
   }
