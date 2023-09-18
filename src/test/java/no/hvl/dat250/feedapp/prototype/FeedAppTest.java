@@ -44,7 +44,9 @@ public class FeedAppTest {
 
         // Test poll
         assertThat(eirik.getPolls().size(), is(2));
-        Iterator<Poll> it = eirik.getPolls().iterator();
+        // Sort iterator by created
+        Iterator<Poll> it = eirik.getPolls().stream().sorted((p1, p2) -> p1.getCreated().compareTo(p2.getCreated()))
+                .iterator();
         Poll poll = it.next();
 
         assertThat(poll.getTitle(), is("Databases"));
