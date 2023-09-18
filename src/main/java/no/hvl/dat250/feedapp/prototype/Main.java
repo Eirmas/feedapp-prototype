@@ -27,14 +27,18 @@ public class Main {
     UserDao userDao = new UserDao(em);
     PollDao pollDao = new PollDao(em);
     InviteDao inviteDao = new InviteDao(em, pollDao);
-    VoteDao voteDao = new VoteDao(em, pollDao, userDao);
+    VoteDao voteDao = new VoteDao(em, pollDao, userDao, inviteDao);
 
     User eirik = userDao.createUser("eirik.maaseidvaag@gmail.com", "Eirik", "Måseidvåg");
 
-    Poll poll = pollDao.createPoll("Databases", "PostgreSQL is better than MySQL", eirik, true);
+    Poll poll = pollDao.createPoll("Databases", "PostgreSQL is better than MySQL", eirik, false);
+    pollDao.createPoll("Towns", "Ålesund is better than Bergen", eirik, true);
 
     inviteDao.inviteUser(poll.getId(), "eirikmaseidvag@adventuretech.no");
 
-    voteDao.vote(poll.getId(), eirik.getId(), true);
+    voteDao.vote(poll.getId(), true, eirik.getId());
+    voteDao.vote(poll.getId(), true, eirik.getId());
+    voteDao.vote(poll.getId(), true);
+    voteDao.vote(poll.getId(), false);
   }
 }

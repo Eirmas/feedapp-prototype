@@ -37,6 +37,12 @@ public class PollDao {
         .executeUpdate();
   }
 
+  public int getAnswerCountById(Long id) {
+    return em.createQuery("SELECT COUNT(v) FROM votes v WHERE v.poll.id = :id", Long.class)
+        .setParameter("id", id)
+        .getSingleResult().intValue();
+  }
+
   public int getPollYesById(Long id) {
     return em.createQuery("SELECT COUNT(v) FROM votes v WHERE v.poll.id = :id AND v.answer = true", Long.class)
         .setParameter("id", id)

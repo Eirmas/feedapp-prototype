@@ -1,6 +1,7 @@
 package no.hvl.dat250.feedapp.prototype.services;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import no.hvl.dat250.feedapp.prototype.models.Invite;
 import no.hvl.dat250.feedapp.prototype.models.Poll;
 
@@ -18,6 +19,15 @@ public class InviteDao {
         .setParameter("pollId", pollId)
         .setParameter("email", email)
         .getSingleResult();
+  }
+
+  public boolean hasInvite(Long pollId, String email) {
+    try {
+      this.getInvite(pollId, email);
+      return true;
+    } catch (NoResultException e) {
+      return false;
+    }
   }
 
   public Invite inviteUser(Long pollId, String email) {
